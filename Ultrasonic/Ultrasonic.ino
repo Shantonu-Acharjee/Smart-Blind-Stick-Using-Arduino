@@ -13,7 +13,9 @@ void setup() {
   pinMode(echoPin, INPUT);   // Set the echoPin as an INPUT
   pinMode(buzzerPin, OUTPUT);
 
-  
+  //Doing Buzzer trunOff at first
+  pinMode(buzzerPin, OUTPUT);
+  digitalWrite(buzzerPin, HIGH);
 }
 
 void loop() {
@@ -43,6 +45,20 @@ void loop() {
   delay(500);  // Wait for 500 milliseconds before the next reading
 
 
+  //Ultrosonic with Buzzer
+  if(distance <= 20){
+    digitalWrite(buzzerPin, LOW);
+    delay(500);
+  }
+
+  if(distance > 20){
+    digitalWrite(buzzerPin, HIGH);
+  }
+
+
+
+
+
 }
 
 
@@ -50,6 +66,4 @@ void loop() {
 
 
 
-void obstacleDetect(){
-  
-}
+
