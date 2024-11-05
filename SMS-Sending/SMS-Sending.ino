@@ -1,7 +1,6 @@
 #include <SoftwareSerial.h>
-
 //Create software serial object to communicate with SIM800L
-SoftwareSerial mySerial(6,7); //SIM800L Tx & Rx is connected to Arduino #3 & #2
+SoftwareSerial mySerial(6, 7); //SIM800L Tx & Rx is connected to Arduino #3 & #2
 
 void setup()
 {
@@ -14,14 +13,16 @@ void setup()
   Serial.println("Initializing..."); 
   delay(1000);
 
-  mySerial.println("AT"); //Once the handshake test is successful, i t will back to OK
+  mySerial.println("AT"); //Once the handshake test is successful, it will back to OK
   updateSerial();
-  
- mySerial.println("ATD+ +8801789333514"); //01612467562  change ZZ with country code and xxxxxxxxxxx with phone number to dial
+
+  mySerial.println("AT+CMGF=1"); // Configuring TEXT mode
   updateSerial();
-  delay(20000); // wait for 20 seconds...
-  mySerial.println("ATH"); //hang up
+ mySerial.println("AT+CMGS=\"+8801789333514\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
   updateSerial();
+  mySerial.print("Last Minute Engineers | lastminuteengineers.com"); //text content
+  updateSerial();
+  mySerial.write(26);
 }
 
 void loop()

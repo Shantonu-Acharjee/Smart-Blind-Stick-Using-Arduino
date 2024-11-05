@@ -1,4 +1,4 @@
-const int Button1 = A5;
+const int Button1 = A3;
 int ButtonState = 0;
 
 void setup() {
